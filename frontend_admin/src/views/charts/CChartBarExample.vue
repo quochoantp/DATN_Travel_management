@@ -11,24 +11,21 @@ export default {
     defaultData() {
       return {
         labels: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-          'August',
-          'September',
-          'October',
-          'November',
-          'December',
+          '01/07/2023',
+          '05/07/2023',
+          '09/07/2023',
+          '10/07/2023',
+          '12/07/2023',
+          '23/07/2023',
+          '24/07/2023',
+          '25/07/2023',
+          '29/07/2023',
         ],
         datasets: [
           {
-            label: 'GitHub Commits',
+            label: 'Đồ thị số người đặt Tour trong tháng',
             backgroundColor: '#f87979',
-            data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 12],
+            data: [1, 5, 2, 4, 6, 1, 1, 2, 7],
           },
         ],
       }

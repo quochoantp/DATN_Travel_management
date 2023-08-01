@@ -71,7 +71,6 @@ export default {
   computed: {
     // ...mapGetters({
     //   placeListGet: 'tour/getPlaceList',
-    //   getLandTourPriceById: 'tour/getLandPrice1TourList',
     //   getTourPriceById: 'tour/getTourPrice1TourList',
     //   getTourScheduleByTourId: 'tour/getTourScheduleList',
     //   getDiscountTour: 'tour/getDiscountTour',

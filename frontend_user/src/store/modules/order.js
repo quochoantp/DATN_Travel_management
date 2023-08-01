@@ -23,11 +23,11 @@ const mutations = {
 // actions
 const actions = {
     async bookTour({ commit }, item) {
-        const res = await axios.post("http://localhost:8089/api/v1/order", item)
+        const res = await axios.post("http://localhost:8091/api/v1/order", item)
         return res;
     },
     async actionOrderListHistory({ commit }, userId) {
-        const res = await axios.get(`http://localhost:8089/api/v1/order-history/${userId}`)
+        const res = await axios.get(`http://localhost:8091/api/v1/order-history/${userId}`)
         if(res.status == 200){
             commit('setOrderHistory', res.data)
         }

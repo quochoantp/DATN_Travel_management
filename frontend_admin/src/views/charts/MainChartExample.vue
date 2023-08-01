@@ -13,9 +13,9 @@
 import { CChart } from '@coreui/vue-chartjs'
 import { getStyle, hexToRgba } from '@coreui/utils/src'
 
-function random(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
+// function random(min, max) {
+//   return Math.floor(Math.random() * (max - min + 1) + min)
+// }
 
 export default {
   name: 'MainChartExample',
@@ -24,7 +24,20 @@ export default {
   },
   setup() {
     const data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: [
+        'Tháng 1',
+        'Tháng 2',
+        'Tháng 3',
+        'Tháng 4',
+        'Tháng 5',
+        'Tháng 6',
+        'Tháng 7',
+        'Tháng 8',
+        'Tháng 9',
+        'Tháng 10',
+        'Tháng 11',
+        'Tháng 12',
+      ],
       datasets: [
         {
           label: 'My First dataset',
@@ -33,41 +46,36 @@ export default {
           pointHoverBackgroundColor: getStyle('--cui-info'),
           borderWidth: 2,
           data: [
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
+            1500000, 11500000, 30000000, 40000000, 35000000, 15000000, 10000000,
+            0, 0, 0, 0, 0,
           ],
           fill: true,
         },
-        {
-          label: 'My Second dataset',
-          backgroundColor: 'transparent',
-          borderColor: getStyle('--cui-success'),
-          pointHoverBackgroundColor: getStyle('--cui-success'),
-          borderWidth: 2,
-          data: [
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-            random(50, 200),
-          ],
-        },
-        {
-          label: 'My Third dataset',
-          backgroundColor: 'transparent',
-          borderColor: getStyle('--cui-danger'),
-          pointHoverBackgroundColor: getStyle('--cui-danger'),
-          borderWidth: 1,
-          borderDash: [8, 5],
-          data: [65, 65, 65, 65, 65, 65, 65],
-        },
+        // {
+        //   label: 'My Second dataset',
+        //   backgroundColor: 'transparent',
+        //   borderColor: getStyle('--cui-success'),
+        //   pointHoverBackgroundColor: getStyle('--cui-success'),
+        //   borderWidth: 2,
+        //   data: [
+        //     random(50, 200),
+        //     random(50, 200),
+        //     random(50, 200),
+        //     random(50, 200),
+        //     random(50, 200),
+        //     random(50, 200),
+        //     random(50, 200),
+        //   ],
+        // },
+        // {
+        //   label: 'My Third dataset',
+        //   backgroundColor: 'transparent',
+        //   borderColor: getStyle('--cui-danger'),
+        //   pointHoverBackgroundColor: getStyle('--cui-danger'),
+        //   borderWidth: 1,
+        //   borderDash: [8, 5],
+        //   data: [65, 65, 65, 65, 65, 65, 65],
+        // },
       ],
     }
 

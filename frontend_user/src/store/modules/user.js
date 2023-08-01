@@ -36,7 +36,7 @@ const actions = {
         commit('setAuthentication', val)
     },
     async getUser({commit}, item){
-        const res = await axios.get(`http://localhost:8089/api/v1/user/${item}`)
+        const res = await axios.get(`http://localhost:8091/api/v1/user/${item}`)
         if(res.status == 200){
             commit('setUser', res.data)
             console.log(res.data)

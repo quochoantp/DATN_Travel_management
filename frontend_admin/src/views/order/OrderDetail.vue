@@ -48,26 +48,8 @@
         <el-form-item label="Giá trẻ em 5-11 tuổi">
           <el-input v-model="getTourPriceById.children" disabled="true" />
         </el-form-item>
-        <el-form-item label="Giá trẻ em 2-5 tuổi">
+        <el-form-item label="Giá trẻ em < 4 tuổi">
           <el-input v-model="getTourPriceById.kid" disabled="true" />
-        </el-form-item>
-        <el-form-item label="Giá trẻ em <2 tuổi">
-          <el-input v-model="getTourPriceById.baby" disabled="true" />
-        </el-form-item>
-      </CCol>
-      <CCol>
-        <h6 style="text-align: center">Giá land tour</h6>
-        <el-form-item label="Giá người trưởng thành">
-          <el-input v-model="getLandTourPriceById.adult" disabled="true" />
-        </el-form-item>
-        <el-form-item label="Giá trẻ em 5-11 tuổi">
-          <el-input v-model="getLandTourPriceById.children" disabled="true" />
-        </el-form-item>
-        <el-form-item label="Giá trẻ em 2-5 tuổi">
-          <el-input v-model="getLandTourPriceById.kid" disabled="true" />
-        </el-form-item>
-        <el-form-item label="Giá trẻ em <2 tuổi">
-          <el-input v-model="getLandTourPriceById.baby" disabled="true" />
         </el-form-item>
       </CCol>
     </CRow>
@@ -106,7 +88,6 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getLandTourPriceById: 'tour/getLandPrice1TourList',
       getTourPriceById: 'tour/getTourPrice1TourList',
       getDiscountTour: 'tour/getDiscountTour',
       getListOrder: 'tour/getOrdersById',

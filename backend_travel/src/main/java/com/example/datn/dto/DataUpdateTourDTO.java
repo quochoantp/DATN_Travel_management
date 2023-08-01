@@ -1,4 +1,4 @@
-package com.group10.datn.dto;
+package com.example.datn.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,7 +36,7 @@ public class DataUpdateTourDTO {
     private String landtourPriceBaby;
     private String landtourPriceSurcharge;
 
-    private List<TourScheduleUpdateDTO> tourScheduleDTOList;
+   // private List<TourScheduleUpdateDTO> tourScheduleDTOList;
 
     private Integer idDiscount;
     private Long priceId;

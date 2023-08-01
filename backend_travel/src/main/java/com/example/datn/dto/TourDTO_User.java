@@ -1,8 +1,8 @@
-package com.group10.datn.dto;
+package com.example.datn.dto;
 
-import com.group10.bookingtravel.entity.LandTourPrice;
-import com.group10.bookingtravel.entity.TourPrice;
-import com.group10.bookingtravel.entity.TourSchedule;
+import com.example.datn.entity.TourPrice;
+import com.example.datn.entity.TourSchedule;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,10 @@ public class TourDTO_User {
     private String code;
     private String name;
     private String shortDesc;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
     private Date startTime;
+
     private Integer period;
     private Long startPlaceId;
     private String startPlaceName;
@@ -30,7 +33,6 @@ public class TourDTO_User {
     private Integer placeOrderMax;
     private Integer status;
     private TourPrice tourPrice;
-    private LandTourPrice landTourPrice;
     private List<TourSchedule> tourScheduleList;
     private Long priceId;
     private Integer price;
@@ -57,16 +59,14 @@ public class TourDTO_User {
         this.priceId = priceId;
     }
 
-    public TourDTO_User(Long id, String code, String name, String shortDesc, Date startTime, Integer period, Long startPlaceId, String startPlaceName, Long endPlaceId, String endPlaceName, String mainImageUrl, Integer placeOrderMax, Integer price, Float discount, Date startDateDiscount, Date endDateDiscount) {
+    public TourDTO_User(Long id, String code, String name, String shortDesc, Date startTime, Integer period, String startPlaceName, String endPlaceName, String mainImageUrl, Integer placeOrderMax, Integer price, Float discount, Date startDateDiscount, Date endDateDiscount) {
         this.id = id;
         this.code = code;
         this.name = name;
         this.shortDesc = shortDesc;
         this.startTime = startTime;
         this.period = period;
-        this.startPlaceId = startPlaceId;
         this.startPlaceName = startPlaceName;
-        this.endPlaceId = endPlaceId;
         this.endPlaceName = endPlaceName;
         this.mainImageUrl = mainImageUrl;
         this.placeOrderMax = placeOrderMax;

@@ -38,6 +38,13 @@
         </template>
       </el-table-column>
       <el-table-column prop="sumPrice" label="Tổng đơn" />
+      <el-table-column prop="status" label="Trạng thái">
+        <template #default="scope">
+          <el-tag :key="tag" :type="success" effect="plain">
+            {{ convertStatus(scope.row.status) }}
+          </el-tag>
+        </template>
+      </el-table-column>
       <el-table-column fixed="right" label="Thao tác">
         <template #default="scope">
           <el-button
@@ -46,6 +53,24 @@
             size="small"
             @click="handleUpdateClick(scope.row)"
             >Chi tiết</el-button
+          >
+          <el-tooltip
+            v-if="scope.row.status == 2"
+            effect="dark"
+            content="Xác nhận thanh toán"
+            placement="top"
+          >
+            <el-button type="success" size="small"
+              ><CIcon icon="cil-check" />
+            </el-button>
+          </el-tooltip>
+
+          <el-button
+            v-else-if="scope.row.status == 3"
+            link
+            type="warning"
+            size="small"
+            >Gửi hợp đồng</el-button
           >
         </template>
       </el-table-column>
@@ -113,7 +138,6 @@ export default {
   methods: {
     ...mapActions({
       actionAllOrdersList: 'order/actionAllOrdersList',
-      actionLandTourPriceById: 'tour/actionGetLandPrice1TourList',
       actionTourPriceById: 'tour/actionGetTourPrice1TourList',
       actionGetDiscountTour: 'tour/actionGetDiscountTour',
     }),
@@ -136,6 +160,19 @@ export default {
       this.objectSearch.fromDate = fromDate
       this.objectSearch.toDate = toDate
     },
+    convertStatus(id) {
+      if (id == 1) {
+        return 'Đang thanh toán'
+      } else if (id == 2) {
+        return 'Đã thanh toán'
+      } else if (id == 3) {
+        return 'Đã xác nhận thanh toán'
+      } else if (id == 4) {
+        return 'Đã gửi hợp đồng'
+      } else if (id == 5) {
+        return 'Hủy'
+      } else return 'Chưa thanh toán'
+    },
     getFormattedDateForOrder(date) {
       let year = date.getFullYear()
       let month = (1 + date.getMonth()).toString().padStart(2, '0')
@@ -153,7 +190,6 @@ export default {
     handleUpdateClick(data) {
       this.dialogDetailVisible = true
       this.guideUpdate = data
-      this.actionLandTourPriceById(data.priceId)
       this.actionTourPriceById(data.priceId)
       this.actionGetDiscountTour(data.priceId)
     },

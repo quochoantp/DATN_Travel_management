@@ -35,7 +35,7 @@ const actions = {
   async actionGuideList({ commit }, objectSearch) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.get(`
-    http://localhost:8089/api/v1/guides?nameGuide=${objectSearch.nameGuide}&phoneGuide=${objectSearch.phoneGuide}`)
+    http://localhost:8091/api/v1/guides?nameGuide=${objectSearch.nameGuide}&phoneGuide=${objectSearch.phoneGuide}`)
     if (data.status === 200) {
       console.log('ress===', data.data)
       commit('setGuideList', data.data)
@@ -44,7 +44,7 @@ const actions = {
   async actionGetMaxId({ commit }) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.get(`
-    http://localhost:8089/api/v1/guides/maxid`)
+    http://localhost:8091/api/v1/guides/maxid`)
     if (data.status === 200) {
       console.log('ress===', data.data)
       commit('setMaxId', data.data)
@@ -53,7 +53,7 @@ const actions = {
   async actionGetGuideSelectBoxList({ commit }) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.get(`
-    http://localhost:8089/api/v1/guide-select-box`)
+    http://localhost:8091/api/v1/guide-select-box`)
     if (data.status === 200) {
       console.log('ress===', data.data)
       commit('setGuideSelectBoxList', data.data)
@@ -62,7 +62,7 @@ const actions = {
   async actionPostNewGuide({ commit }, dataGuide) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.post(
-      `http://localhost:8089/api/v1/guides`,
+      `http://localhost:8091/api/v1/guides`,
       dataGuide,
     )
     if (data.status === 200) {
@@ -73,7 +73,7 @@ const actions = {
   async actionPostUpdateGuide({ commit }, dataGuide) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.post(
-      `http://localhost:8089/api/v1/guides/update`,
+      `http://localhost:8091/api/v1/guides/update`,
       dataGuide,
     )
     if (data.status === 200) {

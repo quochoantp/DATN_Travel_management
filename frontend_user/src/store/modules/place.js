@@ -25,7 +25,7 @@ const mutations = {
 // actions
 const actions = {
     async getAll({ commit }) {
-        const data = await axios.get("http://localhost:8089/api/v1/places")
+        const data = await axios.get("http://localhost:8091/api/v1/places")
         if(data.status == 200){
             commit('setPlaces', data.data)
         }

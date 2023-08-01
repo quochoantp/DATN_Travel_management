@@ -30,7 +30,7 @@ const actions = {
   async actionUserList({ commit }, objectSearch) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.get(
-      `http://localhost:8089/api/v1/users?id=${objectSearch.id}&username=${objectSearch.username}&rank=${objectSearch.rank}&status=${objectSearch.status}`,
+      `http://localhost:8091/api/v1/users?id=${objectSearch.id}&username=${objectSearch.username}&rank=${objectSearch.rank}&status=${objectSearch.status}`,
     )
     if (data.status === 200) {
       console.log('ress===', data.data)
@@ -40,7 +40,7 @@ const actions = {
   async actionUserStatus({ commit }, userStatus) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.post(
-      `http://localhost:8089/api/v1/user/status`,
+      `http://localhost:8091/api/v1/user/status`,
       userStatus,
     )
     if (data.status === 200) {

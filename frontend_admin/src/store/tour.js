@@ -4,7 +4,6 @@ export const state = () => ({
   tourList: [],
   placeList: [],
   tourScheduleList: [],
-  landprice1Tour: {},
   tourprice1Tour: {},
   discountTour: {},
   ordersById: [],
@@ -16,7 +15,6 @@ const getters = {
   getTourList: (state) => state.tourList,
   getPlaceList: (state) => state.placeList,
   getTourScheduleList: (state) => state.tourScheduleList,
-  getLandPrice1TourList: (state) => state.landprice1Tour,
   getTourPrice1TourList: (state) => state.tourprice1Tour,
   getDiscountTour: (state) => state.discountTour,
   getOrdersById: (state) => state.ordersById,
@@ -33,9 +31,6 @@ const mutations = {
   },
   setTourScheduleList: (state, payload) => {
     state.tourScheduleList = payload
-  },
-  setLandPrice1TourList: (state, payload) => {
-    state.landprice1Tour = payload
   },
   setTourPrice1TourList: (state, payload) => {
     state.tourprice1Tour = payload
@@ -58,7 +53,7 @@ const actions = {
   async actionTourList({ commit }, objectSearch) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.get(`
-    http://localhost:8089/api/v1/tours?codeTour=${objectSearch.id}&nameTour=${objectSearch.name}`)
+    http://localhost:8091/api/v1/tours?codeTour=${objectSearch.id}&nameTour=${objectSearch.name}`)
     if (data.status === 200) {
       console.log('ress===', data.data)
       commit('setTourList', data.data)
@@ -66,26 +61,16 @@ const actions = {
   },
   async actionPlaceList({ commit }) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
-    const data = await axiosIns.get('http://localhost:8089/api/v1/places')
+    const data = await axiosIns.get('http://localhost:8091/api/v1/places')
     if (data.status === 200) {
       console.log('ress===', data.data)
       commit('setPlaceList', data.data)
     }
   },
-
-  async actionGetLandPrice1TourList({ commit }, id) {
-    // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
-    const data = await axiosIns.get(`
-    http://localhost:8089/api/v1/land-tour-price/${id}`)
-    if (data.status === 200) {
-      commit('setLandPrice1TourList', data.data)
-    }
-  },
-
   async actionGetDiscountTour({ commit }, id) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.get(`
-    http://localhost:8089/api/v1/discount/${id}`)
+    http://localhost:8091/api/v1/discount/${id}`)
     if (data.status === 200) {
       commit('setDiscountTour', data.data)
     }
@@ -94,7 +79,7 @@ const actions = {
   async actionGetTourPrice1TourList({ commit }, id) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.get(`
-    http://localhost:8089/api/v1/tour-price/${id}`)
+    http://localhost:8091/api/v1/tour-price/${id}`)
     if (data.status === 200) {
       commit('setTourPrice1TourList', data.data)
     }
@@ -103,7 +88,7 @@ const actions = {
   async actionGetTourScheduleList({ commit }, id) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.get(`
-    http://localhost:8089/api/v1/tour-schedule/${id}`)
+    http://localhost:8091/api/v1/tour-schedule/${id}`)
     if (data.status === 200) {
       commit('setTourScheduleList', data.data)
     }
@@ -112,7 +97,7 @@ const actions = {
   async actionGetOrdersByTourId({ commit }, id) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.get(`
-    http://localhost:8089/api/v1/tour-orders/${id}`)
+    http://localhost:8091/api/v1/tour-orders/${id}`)
     if (data.status === 200) {
       commit('setOrdersById', data.data)
     }
@@ -120,7 +105,7 @@ const actions = {
   async actionPostNewTour({ commit }, dataTour) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.post(
-      `http://localhost:8089/api/v1/tour`,
+      `http://localhost:8091/api/v1/tour`,
       dataTour,
     )
     if (data.status === 200) {
@@ -131,7 +116,7 @@ const actions = {
   async actionPostUpdateTour({ commit }, dataTour) {
     // let header = { headers: { Authorization: "Bearer " + useJwt.getToken() } }
     const data = await axiosIns.post(
-      `http://localhost:8089/api/v1/tour/update`,
+      `http://localhost:8091/api/v1/tour/update`,
       dataTour,
     )
     if (data.status === 200) {

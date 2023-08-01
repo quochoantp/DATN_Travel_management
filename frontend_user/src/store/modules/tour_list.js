@@ -1,8 +1,8 @@
 import axios from 'axios'
 const state = {
     objSearch: {
-        startPlaceId: "",
-        endPlaceId: "",
+        startPlaceName: "",
+        endPlaceName: "",
         startTime: "",
         fromPeriod: "",
         toPeriod: "",
@@ -12,7 +12,9 @@ const state = {
     },
     tours: [],
     tour: null,
-    toursDiscount: []
+    toursDiscount: [],
+    toursRecommend: [],
+    placeAdvertisment: []
 }
 
 // getters
@@ -33,6 +35,12 @@ const getters = {
     getToursDiscount: (state) => {
         return state.toursDiscount
     },
+    getToursRecommend: (state) => {
+        return state.toursRecommend
+    },
+    getPlaceAdvertisment: (state) => {
+        return state.placeAdvertisment
+    }
 
 }
 
@@ -40,8 +48,8 @@ const getters = {
 const mutations = {
     setObjSearch: (state, payload) => {
         state.objSearch = {
-            startPlaceId: payload.startPlaceId,
-            endPlaceId: payload.endPlaceId,
+            startPlaceName: payload.startPlaceName,
+            endPlaceName: payload.endPlaceName,
             startTime: payload.startTime,
             fromPeriod: payload.fromPeriod,
             toPeriod: payload.toPeriod,
@@ -60,6 +68,10 @@ const mutations = {
         state.toursDiscount = payload
     },
 
+    setPlaceAdvertisment: (state, payload) => {
+        state.placeAdvertisment = payload
+    },
+
 }
 // actions
 const actions = {
@@ -69,21 +81,39 @@ const actions = {
     },
 
     async getTours({ commit }, item) {
-        const data = await axios.get(`http://localhost:8089/api/v1/tour-list?startPlaceId=${item.startPlaceId}&endPlaceId=${item.endPlaceId}&startTime=${item.startTime}&fromPeriod=${item.fromPeriod}&toPeriod=${item.toPeriod}&fromPrice=${item.fromPrice}&toPrice=${item.toPrice}`)
+        const data = await axios.post(`http://localhost:8091/api/v1/tour-list`,item)
         if (data.status == 200) {
             commit('setTours', data.data)
         }
     },
     async getTour({ commit }, id) {
-        const data = await axios.get(`http://localhost:8089/api/v1/tour-detail/${id}`)
+        const data = await axios.get(`http://localhost:8091/api/v1/tour-detail/${id}`)
         if (data.status == 200) {
             commit('setTour', data.data)
         }
     },
     async getToursDiscount({ commit }) {
-        const data = await axios.get(`http://localhost:8089/api/v1/tour-discount`)
+        const data = await axios.get(`http://localhost:8091/api/v1/tour-discount`)
         if (data.status == 200) {
             commit('setToursDiscount', data.data)
+        }
+    },
+
+    async getPlaceAdvertisment({ commit }) {
+        const data = await axios.get(`http://localhost:8091/api/v1/place-advertisment`)
+        if (data.status == 200) {
+            commit('setPlaceAdvertisment', data.data)
+        }
+    },
+
+    async getToursRecommend({ commit }) {
+        let url = `http://103.174.213.91:8089/api/v1/tours/recommend`
+        if(localStorage.getItem('userId') !== null){
+            url = `http://103.174.213.91:8089/api/v1/tours/recommend?userId=${localStorage.getItem('userId')}`
+        }
+        const data = await axios.get(url)
+        if (data.status == 200) {
+            commit('setToursRecommend', data.data)
         }
     }
     // async exportData({ commit }, filter) {

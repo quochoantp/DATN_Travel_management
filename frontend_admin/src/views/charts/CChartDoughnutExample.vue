@@ -10,11 +10,16 @@ export default {
   computed: {
     defaultData() {
       return {
-        labels: ['VueJs', 'EmberJs', 'VueJs', 'AngularJs'],
+        labels: [
+          'Đã xác nhận thanh toán',
+          'Chưa xác nhận thanh toán',
+          'Đã gửi hợp đồng',
+          'Đã hủy',
+        ],
         datasets: [
           {
             backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-            data: [40, 20, 80, 10],
+            data: [15, 10, 8, 2],
           },
         ],
       }

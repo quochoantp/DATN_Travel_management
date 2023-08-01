@@ -1,10 +1,15 @@
 package com.example.datn.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
@@ -13,6 +18,7 @@ import java.util.Date;
 @Table(name = "tour")
 @Entity
 public class Tour {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,22 +31,23 @@ public class Tour {
     private String shortDesc;
 
     @Column(name = "start_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
     private Date startTime;
 
     @Column(name = "period")
     private Integer period;
 
-    @Column(name = "start_place_id")
-    private Long startPlaceId;
+    @Column(name = "start_place_name")
+    private String startPlaceName;
 
-    @Column(name = "end_place_id")
-    private Long endPlaceId;
+    @Column(name = "end_place_name")
+    private String endPlaceName;
 
     @Column(name = "main_image_url")
     private String mainImageUrl;
 
-    @Column(name = "guide_id")
-    private Long guideId;
+    @Column(name = "place_id")
+    private Long placeId;
 
     @Column(name = "place_order_max")
     private Integer placeOrderMax;
@@ -51,6 +58,19 @@ public class Tour {
     @Column(name = "status")
     private Integer status;
 
+    @Column(name = "isdel")
+    private Integer isdel;
 
+    @Column(name = "created_date")
+    private Date createdDate;
+
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @Column(name = "updated_date")
+    private Date updatedDate;
+
+    @Column(name = "updated_by")
+    private String updatedBy;
 
 }

@@ -11,10 +11,8 @@
         })
     "
   >
-    <CSidebarBrand>
-      <h4 custom-class-name="sidebar-brand-full">DL Travel</h4>
-    </CSidebarBrand>
-
+    <img src="../assets/images/logo.png" alt="Lua viet" />
+    <br />
     <AppSidebarNav />
   </CSidebar>
 </template>
