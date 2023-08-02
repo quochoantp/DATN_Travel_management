@@ -2,6 +2,23 @@
   <div>
     <CRow>
       <CCol>
+        <el-form-item label="Mã Tour">
+          <el-input type="text" v-model="objectSearch.tourCode" />
+        </el-form-item>
+      </CCol>
+      <CCol>
+        <el-form-item label="Tên Tour">
+          <el-input type="text" v-model="objectSearch.tourName" />
+        </el-form-item>
+      </CCol>
+      <CCol>
+        <el-form-item label="Trạng thái đơn hàng">
+          <el-select type="text" v-model="objectSearch.orderStatus" />
+        </el-form-item>
+      </CCol>
+    </CRow>
+    <CRow>
+      <CCol>
         <el-form-item label="Từ ngày">
           <el-input type="date" v-model="objectSearch.fromDate" />
         </el-form-item>
@@ -11,12 +28,15 @@
           <el-input type="date" v-model="objectSearch.toDate" />
         </el-form-item>
       </CCol>
-      <CCol>
+      <CCol> </CCol>
+    </CRow>
+    <Crow>
+      <CCol class="d-flex justify-content-center" style="margin-bottom: 15px">
         <el-button @click="handleSearchClick" type="primary"
           >Tìm kiếm</el-button
         >
       </CCol>
-    </CRow>
+    </Crow>
     <el-table
       :data="displayOrdersAllData"
       stripe
@@ -26,26 +46,25 @@
       :summary-method="getSummaries"
       show-summary
     >
-      <el-table-column type="index" fixed />
-      <el-table-column prop="id" label="Id" />
-      <el-table-column prop="fullname" label="Họ và tên" />
-      <el-table-column prop="email" label="Email" />
-      <el-table-column prop="phoneNumber" label="Số điện thoại" />
-      <el-table-column prop="address" label="Địa chỉ" />
-      <el-table-column prop="createdDate" label="Ngày đặt đơn">
+      <el-table-column type="index" fixed width="30" />
+      <el-table-column prop="fullname" label="Họ và tên" width="200" />
+      <el-table-column prop="email" label="Email" width="250" />
+      <el-table-column prop="phoneNumber" label="Số điện thoại" width="150" />
+      <el-table-column prop="address" label="Địa chỉ" width="250" />
+      <el-table-column prop="createdDate" label="Ngày đặt đơn" width="150">
         <template #default="scope">
           {{ getFormattedDate(new Date(scope.row.createdDate)) }}
         </template>
       </el-table-column>
-      <el-table-column prop="sumPrice" label="Tổng đơn" />
-      <el-table-column prop="status" label="Trạng thái">
+      <el-table-column prop="sumPrice" label="Tổng đơn" width="150" />
+      <el-table-column prop="status" label="Trạng thái" width="200">
         <template #default="scope">
           <el-tag :key="tag" :type="success" effect="plain">
             {{ convertStatus(scope.row.status) }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column fixed="right" label="Thao tác">
+      <el-table-column label="Xem chi tiết" width="120">
         <template #default="scope">
           <el-button
             link
@@ -54,16 +73,16 @@
             @click="handleUpdateClick(scope.row)"
             >Chi tiết</el-button
           >
-          <el-tooltip
-            v-if="scope.row.status == 2"
-            effect="dark"
-            content="Xác nhận thanh toán"
-            placement="top"
-          >
-            <el-button type="success" size="small"
-              ><CIcon icon="cil-check" />
-            </el-button>
-          </el-tooltip>
+        </template>
+      </el-table-column>
+      <el-table-column fixed="right" label="Thao tác" min-width="250px">
+        <template #default="scope">
+          <el-button
+            v-if="scope.row.status == 1 || scope.row.status == 2"
+            type="success"
+            size="small"
+            >Xác nhận thanh toán
+          </el-button>
 
           <el-button
             v-else-if="scope.row.status == 3"
@@ -72,6 +91,7 @@
             size="small"
             >Gửi hợp đồng</el-button
           >
+          <el-button link type="danger" size="small">Hủy đơn</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -108,6 +128,9 @@ export default {
       pageSize2: 10,
       dialogDetailVisible: false,
       objectSearch: {
+        tourCode: null,
+        tourName: null,
+        orderStatus: null,
         fromDate: null,
         toDate: null,
       },
@@ -212,7 +235,7 @@ export default {
           return
         }
         const values = data.map((item) => Number(item[column.property]))
-        if (!values.every((value) => isNaN(value)) && index == 7) {
+        if (!values.every((value) => isNaN(value)) && index == 6) {
           sums[index] = values.reduce((prev, curr) => {
             const value = Number(curr)
             if (!isNaN(value)) {

@@ -539,11 +539,12 @@ export default {
   color: #000 !important;
 }
 .background-img {
-  animation: changeBg 20s infinite;
+  animation: changeBg 60s infinite;
   height: 400px;
   position: relative;
   display: flex;
   justify-content: center;
+  background-image: url("src/images/poster1.jpg");
 }
 
 @keyframes changeBg {

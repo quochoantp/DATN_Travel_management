@@ -15,8 +15,8 @@
       </CRow>
       <CRow>
         <CCol>
-          <el-form-item label="Cấp độ người dùng">
-            <el-select v-model="objectSearch.rank" placeholder="Chọn cấp độ">
+          <el-form-item label="Quyền người dùng">
+            <el-select v-model="objectSearch.rank" placeholder="Chọn quyền">
               <el-option
                 v-for="item in optionsRank"
                 :key="item.value"

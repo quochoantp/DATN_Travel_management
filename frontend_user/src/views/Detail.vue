@@ -75,17 +75,17 @@
             <v-card height="300px">
               <v-card-text class="black--text">
                 <p>
-                  Khởi hành:
+                  Khởi hành :
                   <span class="font-weight-bold">{{
                     formatDate(tour.startTime)
                   }}</span>
                 </p>
                 <p>
-                  Thời gian:
+                  Thời gian :
                   <span class="font-weight-bold">{{ tour.period }} ngày</span>
                 </p>
                 <p>
-                  Nơi khởi hành:
+                  Nơi khởi hành :
                   <span class="font-weight-bold">{{
                     tour.startPlaceName
                   }}</span>
@@ -94,16 +94,46 @@
                   Số chỗ còn nhận:
                   <span class="font-weight-bold">{{ tour.placeOrderMax }}</span>
                 </p>
+                <p>
+                  Ngày giờ tập trung :
+                  <span class="font-weight-bold">30/08/2023 06:00</span>
+                </p>
+                <p>
+                  Nơi tập trung :
+                  <span class="font-weight-bold"
+                    >190 Pasteur, phường Võ Thị Sáu, quận 3, TP.HCM</span
+                  >
+                </p>
               </v-card-text>
             </v-card>
           </v-col>
           <v-col>
             <v-card height="300px">
               <v-card-title>Địa điểm tham quan</v-card-title>
-              <v-card-text>
+              <!-- <v-card-text>
                 <li v-for="(item, index) in locations" :key="index">
                   {{ item }}
                 </li>
+              </v-card-text> -->
+              <v-card-text>
+                <p>
+                  Đà Lạt, một thành phố nằm ẩn mình giữa dãy núi cao nguyên Lâm
+                  Đồng của miền Trung Việt Nam, là một điểm đến lý tưởng cho
+                  những ai tìm kiếm không gian thanh bình và khí hậu mát mẻ
+                  quanh năm. Với những cánh đồng hoa dã quỳ bất tận, những thác
+                  nước mộng mị và hồ nước trong xanh, Đà Lạt đã nhanh chóng trở
+                  thành "thành phố hoa" và điểm đến lãng mạn của người yêu thích
+                  du lịch.
+                </p>
+                <br />
+                <p>
+                  Du lịch Đà Lạt không chỉ dành riêng cho những cặp đôi lãng mạn
+                  mà còn thu hút những tâm hồn thích phiêu lưu bởi những dãy núi
+                  đồi xanh ngắt, những cung đường mòn quanh co đầy thách thức.
+                  Được biết đến là "Thành phố sương mù", mỗi buổi sáng tại Đà
+                  Lạt thường được phủ bởi những tia nắng nhẹ nhàng và sương mù
+                  mơ hồ, tạo nên bầu không khí lãng mạn và thơ mộng.
+                </p>
               </v-card-text>
             </v-card>
           </v-col>
@@ -155,27 +185,23 @@
       </v-row>
     </v-card>
 
-    <h2 class="mt-16 text-center">Thông tin tour</h2>
+    <h2 class="mt-16 text-center">Thông tin liên quan</h2>
 
     <v-row>
       <v-col>
         <v-card>
           <v-card-title class="justify-center"
-            >Thông tin tập trung</v-card-title
+            >Thông tin hướng dẫn viên</v-card-title
           >
           <v-card-text>
-            <div>Ngày giờ tập trung:</div>
-            <div>Nơi tập trung:</div>
+            <span class="font-weight-bold">HDV dẫn đoàn: Đồng Quốc Hoàn</span>
+            <br />
+            <span class="font-weight-bold">Số điện thoại : 0378307303</span>
           </v-card-text>
         </v-card>
         <v-card class="mt-4">
-          <v-card-title class="justify-center"
-            >Thông tin hướng dẫn viên</v-card-title
-          >
-          <!-- <v-card-text>
-            <div>HDV dẫn đoàn: {{ tour.guideName }}</div>
-            <div>HDV tiễn: {{ tour.guideName }}</div>
-          </v-card-text> -->
+          <v-card-title class="justify-center">Ghi chú</v-card-title>
+          <v-card-text style="min-height: 50px"></v-card-text>
         </v-card>
       </v-col>
       <v-col>

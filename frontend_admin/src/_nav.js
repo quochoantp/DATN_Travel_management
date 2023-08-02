@@ -12,7 +12,13 @@ export default [
     component: 'CNavItem',
     name: 'Quản lý Tour',
     to: '/tour',
-    icon: 'cil-speedometer',
+    icon: 'cil-cursor',
+  },
+  {
+    component: 'CNavItem',
+    name: 'Quản lý Khách sạn',
+    to: '/hotel',
+    icon: 'cil-star',
   },
   {
     component: 'CNavItem',

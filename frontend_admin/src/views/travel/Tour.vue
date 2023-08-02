@@ -34,32 +34,47 @@
       v-loading="loading"
     >
       <el-table-column type="index" fixed />
-      <el-table-column prop="code" label="Mã Tour" />
-      <el-table-column prop="name" label="Tên Tour" />
-      <el-table-column prop="startTime" label="Thời gian bắt đầu">
+      <el-table-column prop="code" label="Mã Tour" width="120px" />
+      <el-table-column prop="name" label="Tên Tour" width="150px" />
+      <el-table-column prop="startTime" label="Thời gian bắt đầu" width="140px">
         <template #default="scope">
           {{ getFormattedDate(new Date(scope.row.startTime)) }}
         </template>
       </el-table-column>
-      <el-table-column prop="period" label="Khoảng thời gian" />
-      <el-table-column prop="mainImageUrl" label="Link ảnh" />
-      <el-table-column prop="placeOrderMax" label="Giới hạn đặt" />
-      <el-table-column prop="status" label="Trạng thái" />
-      <el-table-column fixed="right" label="Thao tác">
+      <el-table-column prop="period" label="Khoảng thời gian" width="140px" />
+      <el-table-column prop="mainImageUrl" label="Link ảnh" width="250px" />
+      <el-table-column
+        prop="placeOrderMax"
+        label="Giới hạn đặt"
+        width="140px"
+      />
+      <el-table-column prop="status" label="Trạng thái" width="150px">
+        <template #default="scope"
+          ><div v-if="(scope.row.status = 1)">Đang mở bán</div></template
+        >
+      </el-table-column>
+      <el-table-column fixed="right" label="Thao tác" width="250px">
         <template #default="scope">
           <el-button
             link
             type="primary"
             size="small"
             @click="handleDetailClick(scope.row)"
-            >Detail</el-button
+            >Chi tiết</el-button
           >
           <el-button
             link
-            type="primary"
+            type="warning"
             size="small"
             @click="handleUpdateClick(scope.row)"
-            >Edit</el-button
+            >Chỉnh sửa</el-button
+          >
+          <el-button
+            link
+            type="danger"
+            size="small"
+            @click="handleUpdateClick(scope.row)"
+            >Hủy</el-button
           >
         </template>
       </el-table-column>

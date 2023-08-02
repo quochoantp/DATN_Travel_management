@@ -75,25 +75,20 @@
     <CRow>
       <CCol>
         <el-collapse>
-          <!-- <el-collapse-item title="Ảnh" name="0">
+          <el-collapse-item title="Ảnh" name="0">
             <el-upload
-              action="#"
+              action="https://jsonplaceholder.typicode.com/posts/"
               list-type="picture-card"
+              :on-preview="handlePictureCardPreview"
+              :on-remove="handleRemove"
               :auto-upload="false"
-              :on-change="toggleUpload"
-              :on-remove="toggleUpload"
-              :class="{ hideUpload: !showUpload }"
             >
-              <i slot="default" class="el-icon-plus"></i>
-              <div slot="file" slot-scope="{ file }">
-                <img
-                  class="el-upload-list__item-thumbnail"
-                  :src="file.url"
-                  alt=""
-                />
-              </div>
+              <i class="el-icon-plus"></i>
             </el-upload>
-          </el-collapse-item> -->
+            <el-dialog>
+              <img width="100%" :src="dialogImageUrl" alt="" />
+            </el-dialog>
+          </el-collapse-item>
           <el-collapse-item title="Giá" name="1">
             <CRow>
               <CCol :sm="12" :lg="6">
@@ -105,21 +100,14 @@
                 </el-form-item>
               </CCol>
               <CCol :sm="12" :lg="6">
-                <el-form-item label="Giá trẻ em 2-5 tuổi">
+                <el-form-item label="Giá trẻ em < 5 tuổi">
                   <el-input v-model="tourPriceById.kid" />
                 </el-form-item>
-                <el-form-item label="Giá trẻ em <2 tuổi">
-                  <el-input v-model="tourPriceById.baby" />
+                <el-form-item label="Phụ phí">
+                  <el-input v-model="tourPriceById.surcharge" />
                 </el-form-item>
               </CCol>
             </CRow>
-            <CRow
-              ><CCol :sm="12" :lg="6">
-                <el-form-item label="Phụ phí">
-                  <el-input
-                    v-model="tourPriceById.surcharge"
-                  /> </el-form-item></CCol
-            ></CRow>
           </el-collapse-item>
           <el-collapse-item title="Lịch trình chi tiết" name="2">
             <el-scrollbar max-height="400px">
@@ -150,6 +138,17 @@
                     />
                   </CCol>
                   <CCol> </CCol>
+                </CRow>
+                <CRow>
+                  <CCol>
+                    <el-form-item label="Tiêu đề">
+                      <el-input
+                        type="text"
+                        v-model="item.aliasName"
+                        :rows="6"
+                      />
+                    </el-form-item>
+                  </CCol>
                 </CRow>
                 <CRow>
                   <CCol>
@@ -261,6 +260,7 @@ export default {
       tourSchedule: [
         {
           alias: 'Ngày 1',
+          aliasName: null,
           time: null,
           location: null,
           detail: null,
@@ -295,6 +295,8 @@ export default {
 
         guideId: null,
       },
+      dialogImageUrl: '',
+      dialogVisible: false,
     }
   },
   computed: {
@@ -319,6 +321,13 @@ export default {
       actionPlaceList: 'tour/actionPlaceList',
       actionPostNewTour: 'tour/actionPostNewTour',
     }),
+    handleRemove(file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
+    },
     onClickPlusSchedule() {
       let count = this.tourSchedule.length
       let ngay = 'Ngày ' + (count + 1)
@@ -346,6 +355,11 @@ export default {
       this.$emit('close-dialog', 'false')
     },
     addDataClick() {
+      this.$notify({
+        title: 'Thành công',
+        message: 'Thêm mới thành công',
+        type: 'success',
+      })
       this.tourDataAdd.code = this.tourData.code
       this.tourDataAdd.name = this.tourData.name
       if (this.tourData.startTime != null) {

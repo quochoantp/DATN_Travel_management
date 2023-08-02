@@ -53,6 +53,7 @@
         </el-form-item>
       </CCol>
     </CRow>
+
     <CRow>
       <CCol>
         <el-form-item label="Tổng tiền">
@@ -60,6 +61,14 @@
         </el-form-item>
       </CCol>
     </CRow>
+    <h6 style="text-align: center">Hành khách tham gia</h6>
+
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column type="index" width="50"> </el-table-column>
+      <el-table-column prop="name" label="Họ và tên"> </el-table-column>
+      <el-table-column prop="gender" label="Giới tính"> </el-table-column>
+      <el-table-column prop="date" label="Ngày sinh"> </el-table-column>
+    </el-table>
   </el-form>
 </template>
 
@@ -81,6 +90,13 @@ export default {
   data() {
     return {
       dataOrder: {},
+      tableData: [
+        {
+          name: 'Đồng Quốc Hoàn',
+          gender: 'Nam',
+          date: '2000-05-03',
+        },
+      ],
       fromDatetoOrder: null,
       toDatetoOrder: null,
       orderList: [],
