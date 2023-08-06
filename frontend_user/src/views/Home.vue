@@ -17,15 +17,8 @@
           </b-tab>
         </b-tabs> -->
       <v-card class="menu-tab" style="border-radius: 10px">
-        <v-tabs
-          v-model="tab"
-          color="white"
-          background-color="#99ceff"
-          icons-and-text
-          style="border-radius: 10px"
-        >
+        <v-tabs v-model="tab" color="white" background-color="#99ceff" icons-and-text style="border-radius: 10px">
           <v-tabs-slider></v-tabs-slider>
-
           <v-tab href="#tab-1" class="menu-tab-item"> Tour du lịch </v-tab>
 
           <v-tab href="#tab-2" class="menu-tab-item"> Khách sạn </v-tab>
@@ -37,67 +30,36 @@
         <v-tabs-items v-model="tab">
           <v-tab-item value="tab-1">
             <v-card flat>
-              <v-card-title class="justify-center"
-                >Tìm kiếm tour phù hợp với bạn</v-card-title
-              >
+              <v-card-title class="justify-center">Tìm kiếm tour phù hợp với bạn</v-card-title>
               <v-card-text class="d-flex justify-space-between align-center">
                 <div class="filter-box">
-                  <v-autocomplete
-                    prepend-icon="mdi-map-marker-outline"
-                    label="Điểm đi"
-                    :items="places"
-                    v-model="startPlace"
-                    item-value="name"
-                    item-text="name"
-                  >
+                  <v-autocomplete prepend-icon="mdi-map-marker-outline" label="Điểm đi" :items="places"
+                    v-model="startPlace" item-value="name" item-text="name">
                   </v-autocomplete>
                 </div>
 
                 <v-icon large>mdi-swap-horizontal</v-icon>
 
                 <div class="filter-box ml-4">
-                  <v-autocomplete
-                    prepend-icon="mdi-map-marker-outline"
-                    label="Điểm đến"
-                    :items="places"
-                    v-model="endPlace"
-                    item-value="name"
-                    item-text="name"
-                  >
+                  <v-autocomplete prepend-icon="mdi-map-marker-outline" label="Điểm đến" :items="places"
+                    v-model="endPlace" item-value="name" item-text="name">
                   </v-autocomplete>
                 </div>
 
                 <div class="filter-box">
                   <!-- <v-text-field type="date" label="Ngày đi"></v-text-field> -->
-                  <v-menu
-                    ref="menu"
-                    v-model="menu"
-                    :close-on-content-click="false"
-                    :return-value.sync="startDate"
-                    transition="scale-transition"
-                    offset-y
-                    min-width="auto"
-                  >
+                  <v-menu ref="menu" v-model="menu" :close-on-content-click="false" :return-value.sync="startDate"
+                    transition="scale-transition" offset-y min-width="auto">
                     <template v-slot:activator="{ on, attrs }">
-                      <v-text-field
-                        v-model="startDate"
-                        label="Ngày đi"
-                        prepend-icon="mdi-calendar"
-                        readonly
-                        v-bind="attrs"
-                        v-on="on"
-                      ></v-text-field>
+                      <v-text-field v-model="startDate" label="Ngày đi" prepend-icon="mdi-calendar" readonly
+                        v-bind="attrs" v-on="on"></v-text-field>
                     </template>
                     <v-date-picker v-model="startDate" no-title scrollable>
                       <v-spacer></v-spacer>
                       <v-btn text color="primary" @click="menu = false">
                         Cancel
                       </v-btn>
-                      <v-btn
-                        text
-                        color="primary"
-                        @click="$refs.menu.save(startDate)"
-                      >
+                      <v-btn text color="primary" @click="$refs.menu.save(startDate)">
                         OK
                       </v-btn>
                     </v-date-picker>
@@ -105,20 +67,10 @@
                 </div>
 
                 <div class="filter-box">
-                  <v-select
-                    prepend-icon="mdi-calendar"
-                    label="Số ngày"
-                    :items="periods"
-                    v-model="numOfDay"
-                  >
+                  <v-select prepend-icon="mdi-calendar" label="Số ngày" :items="periods" v-model="numOfDay">
                   </v-select>
                 </div>
-                <v-btn
-                  large
-                  color="#2d4271"
-                  @click="clickSearch"
-                  to="/category"
-                >
+                <v-btn large color="#2d4271" @click="clickSearch" to="/category">
                   <v-icon large color="yellow">mdi-arrow-right</v-icon>
                 </v-btn>
               </v-card-text>
@@ -134,7 +86,7 @@
       <!-- </b-card> -->
     </div>
 
-    <v-row class="mt-16">
+    <v-row class="mt-16" style="padding-top: 40px;">
       <v-col cols="12" lg="12">
         <div>
           <div class="pt-16 mt-16">
@@ -142,12 +94,7 @@
             <v-sheet class="mx-auto" elevation="8" max-width="100%">
               <v-slide-group v-model="model" active-class="success">
                 <v-slide-item v-for="n in placeAds" :key="n.id">
-                  <v-img
-                    height="400"
-                    width="500"
-                    :src="n.imageUrl"
-                    style="cursor: pointer; margin-left: 20px"
-                  ></v-img>
+                  <v-img height="400" width="500" :src="n.imageUrl" style="cursor: pointer; margin-left: 20px"></v-img>
                 </v-slide-item>
               </v-slide-group>
             </v-sheet>
@@ -163,47 +110,24 @@
                     </h2>
 
                     <v-row>
-                      <v-col
-                        v-for="(item, i) in toursDiscount"
-                        :key="i"
-                        cols="12"
-                        lg="4"
-                        md="6"
-                      >
-                        <v-hover
-                          v-slot:default="{ hover }"
-                          close-delay="50"
-                          open-delay="50"
-                        >
+                      <v-col v-for="(item, i) in toursDiscount" :key="i" cols="12" lg="4" md="6">
+                        <v-hover v-slot:default="{ hover }" close-delay="50" open-delay="50">
                           <div>
-                            <v-card
-                              :color="hover ? 'white' : 'transparent'"
-                              :elevation="hover ? 12 : 0"
-                              flat
-                              hover
-                              :to="{ name: 'Detail', params: { id: item.id } }"
-                              min-height="500px"
-                            >
-                              <v-img
-                                :aspect-ratio="16 / 9"
-                                class="elevation-2"
-                                gradient="to top, rgba(25,32,72,.4), rgba(25,32,72,.0)"
-                                height="200px"
-                                :src="item.mainImageUrl"
-                                style="border-radius: 5px"
-                              >
+                            <v-card :color="hover ? 'white' : 'transparent'" :elevation="hover ? 12 : 0" flat hover
+                              :to="{ name: 'Detail', params: { id: item.id } }" min-height="500px">
+                              <v-img :aspect-ratio="16 / 9" class="elevation-2"
+                                gradient="to top, rgba(25,32,72,.4), rgba(25,32,72,.0)" height="200px"
+                                :src="item.mainImageUrl" style="border-radius: 5px">
                                 <div class="d-flex">
                                   <v-spacer></v-spacer>
-                                  <p
-                                    style="
+                                  <p style="
                                       background-color: red;
                                       font-weight: bold;
                                       text-align: center;
                                       color: white;
                                       width: 90px;
                                       border-radius: 5px;
-                                    "
-                                  >
+                                    ">
                                     Giảm {{ item.discount }}%
                                   </p>
                                 </div>
@@ -219,9 +143,7 @@
                                   {{ item.period }}N{{ item.period - 1 }}D - Giờ
                                   đi: {{ formatHour(item.startTime) }}
                                 </div>
-                                <div
-                                  class="text-h6 font-weight-bold black--text"
-                                >
+                                <div class="text-h6 font-weight-bold black--text">
                                   {{ item.name }}
                                 </div>
 
@@ -234,9 +156,7 @@
                                     formatCurrency(item.price)
                                   }}</span>
                                 </div>
-                                <div
-                                  class="text-body-1 red--text font-weight-bold"
-                                >
+                                <div class="text-body-1 red--text font-weight-bold">
                                   {{
                                     formatCurrency(
                                       item.price * (1 - item.discount / 100)
@@ -244,26 +164,17 @@
                                   }}
                                 </div>
 
-                                <div
-                                  id="countdown"
-                                  class="text-body-1 text-center py-2 indigo--text"
-                                  style="
+                                <div id="countdown" class="text-body-1 text-center py-2 indigo--text" style="
                                     border: 1px solid blue;
                                     border-radius: 5px;
-                                  "
-                                >
+                                  ">
                                   Khuyến mãi còn:
                                   {{ calRemainingTime(item.endDateDiscount) }}
                                 </div>
-                                <div
-                                  class="text-body-1 text-right py-2 black--text"
-                                >
-                                  <span class="text-decoration-underline"
-                                    >Số chỗ còn:</span
-                                  >
+                                <div class="text-body-1 text-right py-2 black--text">
+                                  <span class="text-decoration-underline">Số chỗ còn:</span>
                                   <span class="red--text">
-                                    {{ item.placeOrderMax }}</span
-                                  >
+                                    {{ item.placeOrderMax }}</span>
                                 </div>
 
                                 <!-- <div class="d-flex align-center">
@@ -286,40 +197,18 @@
                       Gợi ý cho bạn
                     </h2>
                     <v-row>
-                      <v-col
-                        v-for="(item, i) in tours"
-                        :key="i"
-                        cols="12"
-                        lg="4"
-                        md="6"
-                      >
-                        <v-hover
-                          v-slot:default="{ hover }"
-                          close-delay="50"
-                          open-delay="50"
-                        >
+                      <v-col v-for="(item, i) in tours" :key="i" cols="12" lg="4" md="6">
+                        <v-hover v-slot:default="{ hover }" close-delay="50" open-delay="50">
                           <div>
-                            <v-card
-                              :color="hover ? 'white' : 'transparent'"
-                              :elevation="hover ? 12 : 0"
-                              flat
-                              hover
-                              :to="{ name: 'Detail', params: { id: item.id } }"
-                            >
-                              <v-img
-                                :aspect-ratio="16 / 9"
-                                class="elevation-2"
-                                gradient="to top, rgba(25,32,72,.4), rgba(25,32,72,.0)"
-                                height="200px"
-                                :src="item.mainImageUrl"
-                                style="border-radius: 5px"
-                              >
+                            <v-card :color="hover ? 'white' : 'transparent'" :elevation="hover ? 12 : 0" flat hover
+                              :to="{ name: 'Detail', params: { id: item.id } }">
+                              <v-img :aspect-ratio="16 / 9" class="elevation-2"
+                                gradient="to top, rgba(25,32,72,.4), rgba(25,32,72,.0)" height="200px"
+                                :src="item.mainImageUrl" style="border-radius: 5px">
                               </v-img>
 
                               <v-card-text>
-                                <div
-                                  class="text-h6 font-weight-bold black--text"
-                                >
+                                <div class="text-h6 font-weight-bold black--text">
                                   {{ item.name }}
                                 </div>
 
@@ -331,13 +220,9 @@
                                   {{ formatCurrency(item.price) }}
                                 </div>
 
-                                <div
-                                  class="text-body-1 text-center py-5 indigo--text"
-                                ></div>
+                                <div class="text-body-1 text-center py-5 indigo--text"></div>
                                 <div class="text-body-1 text-right black--text">
-                                  <span class="text-decoration-underline"
-                                    >Số chỗ còn:</span
-                                  >
+                                  <span class="text-decoration-underline">Số chỗ còn:</span>
                                   <span class="red--text">{{
                                     item.placeOrderMax
                                   }}</span>
@@ -374,6 +259,8 @@
 <script>
 import moment from "moment";
 import { mapActions, mapGetters } from "vuex";
+import Slick from 'vue-slick';
+
 export default {
   name: "Home",
   components: {
@@ -409,7 +296,7 @@ export default {
       tours: "tourList/getTours",
       objSearch: "tourList/getObjSearch",
     }),
-    priceDiscount() {},
+    priceDiscount() { },
   },
 
   created() {
@@ -527,34 +414,42 @@ export default {
 .menu-tab {
   width: 90%;
   position: absolute;
-  top: calc(100% - 72px);
-
+  top: calc(100% - 40px);
+  padding-top: -250px;
   color: white !important;
 }
+
 .menu-tab-item {
   color: white !important;
 }
+
 .menu-tab-item:hover {
   background-color: #fff;
   color: #000 !important;
 }
+
 .background-img {
   animation: changeBg 60s infinite;
   height: 400px;
   position: relative;
   display: flex;
   justify-content: center;
+  background-size: cover;
+  /* Thêm thuộc tính này */
   background-image: url("src/images/poster1.jpg");
 }
 
 @keyframes changeBg {
+
   0%,
   100% {
     background-image: url("src/images/poster1.jpg");
   }
+
   33% {
     background-image: url("src/images/poster2.png");
   }
+
   66% {
     background-image: url("src/images/poster3.jpg");
   }
